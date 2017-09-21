@@ -168,10 +168,28 @@ class User implements ResourceOwnerInterface
         return $this->getField('screen_name');
     }
     /**
-     * @return int 1|2 => woman|man
+     * @return string
      */
-    public function getSex()
+    public function getEmail()
     {
-        return $this->getField('sex');
+        return $this->getField('email');
+    }
+    /**
+     * @return string male|female or NULL
+     */
+    public function getGender()
+    {
+        switch ($this->getField('sex')) {
+            case 1:
+                $gender = 'female';
+                break;
+            case 2:
+                $gender = 'male';
+                break;
+            default:
+                $gender = null;
+                break;
+        }
+        return $gender;
     }
 }
